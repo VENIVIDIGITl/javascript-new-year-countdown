@@ -3,10 +3,15 @@ const hours = document.getElementById('hours');
 const minutes = document.getElementById('minutes');
 const seconds = document.getElementById('seconds');
 const countdown = document.getElementById('countdown');
+const year = document.getElementById('year');
+const loading = document.getElementById('loading');
 
 
 const currentYear = new Date().getFullYear();
 const newYearTime = new Date(`January 01 ${currentYear + 1} 00:00:00`);
+
+// Set background year
+year.textContent = currentYear + 1;
 
 
 // Calculate how many days, hours, minutes and seconds are left from milliseconds input
@@ -32,4 +37,11 @@ function updateCountdown() {
   seconds.textContent = ss;
 }
 
+// Show loading spinner until countdown has loaded
+setTimeout(() => {
+  loading.remove();
+  countdown.style.display = 'flex';
+}, 1000)
+
+// Update countdown every second
 setInterval(updateCountdown, 1000);
